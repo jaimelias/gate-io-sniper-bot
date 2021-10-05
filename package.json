@@ -1,0 +1,15 @@
+{
+  "name": "gate-io-sniper-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gate-api": "^5.22.2"
+  }
+}
