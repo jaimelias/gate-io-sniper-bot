@@ -1,5 +1,6 @@
 {
-	"currencyPair": "BRKL_USDT",
-	"buyBalance": 1,
-	"buyPrice": 0.1273
+	"currencyPair": "BTC_USDT",
+	"inputAmount": 3000,
+	"buyPrice": 8,
+	"salePrice": 20
 }
