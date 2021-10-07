@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gate-api": "^5.22.2"
+    "gate-api": "^5.22.2",
+    "nodemon": "^2.0.13"
   }
 }

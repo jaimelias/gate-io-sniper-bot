@@ -58,7 +58,7 @@ const startSale = ({api, Order, startTrade, id, orderConfig}) => {
 			
 			if(status === 'closed')
 			{
-				createOrder({api, Order, startTrade, side, orderConfig, amount});
+				createOrder({api, Order, startTrade, side: 'sell', orderConfig, amount});
 			}
 			else
 			{

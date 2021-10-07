@@ -3,7 +3,6 @@ import {getOrderConfig, handleError} from './utilities.js';
 import {createOrder} from './createOrders.js';
 import GateApi, {Order} from 'gate-api';
 
-const IS_PRODUCTION = true;
 let ORDER_CREATED = false;
 let orderConfig = await getOrderConfig();
 let {currencyPair} = orderConfig;
@@ -26,9 +25,9 @@ const startTrade = () => {
 	api.getCurrencyPair(currencyPair)
 		.then(value => {
 			
-			if(value.body.tradeStatus === 'tradable' && IS_PRODUCTION)
+			if(value.body.tradeStatus === 'tradable')
 			{
-				console.log('is tradable');
+				console.log('+++ creating order +++');
 				
 				createOrder({
 					api, 
@@ -37,6 +36,11 @@ const startTrade = () => {
 					side: 'buy',
 					orderConfig
 				});
+			}
+			else
+			{
+				console.log('--- not tradable ---');
+				startTrade();
 			}
 		},
 		error => {
