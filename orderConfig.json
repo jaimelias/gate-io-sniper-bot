@@ -1,6 +1,6 @@
 {
-	"currencyPair": "WAG_USDT",
-	"inputAmount": 3000,
-	"buyPrice": 0.50,
+	"currencyPair": "BTC_USDT",
+	"inputAmount": 2640,
+	"buyPrice": 0.05,
 	"salePrice": 2.00
 }

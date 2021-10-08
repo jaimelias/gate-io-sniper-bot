@@ -22,6 +22,15 @@ const startTrade = () => {
 		return;
 	}
 	
+	
+	createOrder({
+		api, 
+		Order, 
+		side: 'buy',
+		orderConfig
+	});
+	
+	/*
 	api.getCurrencyPair(currencyPair)
 		.then(value => {
 			
@@ -32,7 +41,6 @@ const startTrade = () => {
 				createOrder({
 					api, 
 					Order, 
-					startTrade, 
 					side: 'buy',
 					orderConfig
 				});
@@ -48,6 +56,7 @@ const startTrade = () => {
 			handleError(error);
 			startTrade();
 		});
+	*/
 		
 	setInterval(async ()=> {
 		orderConfig = await getOrderConfig();

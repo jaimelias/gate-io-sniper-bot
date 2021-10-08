@@ -1,7 +1,8 @@
 import {handleError} from './utilities.js';
 
-export const createOrder = ({api, Order, startTrade, side, orderConfig, amount}) => {
+export const createOrder = props => {
 
+	let {api, Order, side, orderConfig, amount} = props;
 	const {currencyPair, buyPrice, inputAmount, salePrice} = orderConfig;
 	const price = (side === 'buy') ? buyPrice : salePrice;
 	amount = (side === 'buy') ? (inputAmount / buyPrice) :  amount;
@@ -32,7 +33,7 @@ export const createOrder = ({api, Order, startTrade, side, orderConfig, amount})
 			if(side === 'buy' && salePrice > buyPrice)
 			{
 				const {id, amount} = value.body;
-				startSale({api, Order, startTrade, id, orderConfig});
+				startSale({api, Order, id, orderConfig});
 			}
 		},
 		error => {
@@ -40,15 +41,16 @@ export const createOrder = ({api, Order, startTrade, side, orderConfig, amount})
 			
 			if(side === 'buy')
 			{
-				startTrade();
+				createOrder(props);
 			}
 			
 		});					
 };
 
 
-const startSale = ({api, Order, startTrade, id, orderConfig}) => {
+const startSale = props => {
 	
+	const {api, Order, id, orderConfig} = props;
 	const {currencyPair} = orderConfig;
 	
 	api.getOrder(id, currencyPair, {account: 'spot'})
@@ -58,13 +60,13 @@ const startSale = ({api, Order, startTrade, id, orderConfig}) => {
 			
 			if(status === 'closed')
 			{
-				createOrder({api, Order, startTrade, side: 'sell', orderConfig, amount});
+				createOrder({api, Order,  orderConfig, side: 'sell', amount});
 			}
 			else
 			{
 				console.log('buy order still opened');
-				startSale({api, Order, startTrade, id, orderConfig});
+				startSale(props);
 			}
 		},
-		error => console.error(error));					
+		error => handleError(error));					
 };
